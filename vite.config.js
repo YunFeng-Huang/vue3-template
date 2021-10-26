@@ -1,11 +1,9 @@
 const fs = require("fs")
 const path = require("path")
-// Dotenv 是一个零依赖的模块，它能将环境变量中的变量从 .env 文件加载到 process.env 中
+    // Dotenv 是一个零依赖的模块，它能将环境变量中的变量从 .env 文件加载到 process.env 中
 const dotenv = require("dotenv")
-// import {
-//     defineConfig
-// } from 'vite'
-// import vue from '@vitejs/plugin-vue'
+import { defineConfig, searchForWorkspaceRoot } from 'vite'
+    import vue from '@vitejs/plugin-vue'
 // import styleImport from 'vite-plugin-style-import'
 const envFiles = [
     /** default file */
@@ -21,58 +19,65 @@ for (const file of envFiles) {
     }
 }
 
-module.exports = {
-    // 反向代理
-    proxy: {
-        '/v1/': {
-            // https://dev-gateway.iuctrip.com
-            target: "https://gateway.iuctrip.com",
-            // target: "http://192.168.10.74:3000",
-            changeOrigin: true,
-            rewrite: path => path.replace(/^\/v1/, "")
+module.exports = defineConfig({
+    plugins: [
+        vue(),
+        // styleImport({
+        //     libs: [
+        //         //按需加载vant模块样式
+        //         {
+        //             libraryName: "vant",
+        //             esModule: true,
+        //             resolveStyle: (name) => {
+        //                 return `vant/es/${name}/style/index`;
+        //             },
+        //         },
+        //     ],
+        // }),
+    ],
+   
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src') //设置别名
         }
     },
-    alias: {
-        "/@/": path.resolve(__dirname, "./src"),
+    
+    server: {
+         // 反向代理
+        proxy: {
+            '/v1/': {
+                target: "http://security-dev.yingyingwork.com",
+                // target: "http://192.168.10.74:3000",
+                changeOrigin: true,
+                rewrite: path => path.replace(/^\/v1/, "")
+            }
+        },
+        fs: {
+            strict: false,
+        },
+        hostname: process.env.VITE_HOST,
+        port: process.env.VITE_PORT,
+            // 压缩
+        minify: 'esbuild',
+        // 是否自动在浏览器打开
+        open: true,
+        // 是否开启 https
+        https: false,
+        // 服务端渲染
+        ssr: false,
     },
     // optimizeDeps: {
     //     include: ['ElementPlus']
     // },
-    // hostname: process.env.VITE_HOST,
-    port: process.env.VITE_PORT,
     // 引用全局 scss
     cssPreprocessOptions: {
         scss: {
             additionalData: `
-                @import "./src/styles/variables.scss";
+                @import "./src/styles/index.scss";
             `
         }
     },
-    // plugins: [ @import url("//unpkg.com/element-ui@2.12.0/lib/theme-chalk/index.css");
-    //     vue(),
-    //     styleImport({
-    //         libs: [{
-    //             libraryName: 'element-plus',
-    //             esModule: true,
-    //             ensureStyleFile: true,
-    //             resolveStyle: (name) => {
-    //                 name = name.slice(3)
-    //                 return `element-plus/packages/theme-chalk/src/${name}.scss`;
-    //             },
-    //             resolveComponent: (name) => {
-    //                 return `element-plus/lib/${name}`;
-    //             },
-    //         }]
-    //     })
-    // ],
-    // 压缩
-    minify: 'esbuild',
-    // 是否自动在浏览器打开
-    open: true,
-    // 是否开启 https
-    https: false,
-    // 服务端渲染
-    ssr: false,
+    
     /**
      * Base public path when served in production.
      * @default '/'
@@ -85,5 +90,12 @@ module.exports = {
      * @default 'dist'
      */
     outDir: `./dist-temp/${process.env.VITE_ENV}`,
-
-}
+    build: {
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
+        }
+    }
+})

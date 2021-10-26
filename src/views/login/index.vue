@@ -25,10 +25,8 @@
                 <el-col :span="16"
                   ><el-input v-model="form.checkCode" placeholder="验证码"></el-input
                 ></el-col>
-                <el-col :span="8"
-                  ><div class="login-container-imgw">
-                    <img :src="img" @click.native="changeImg" style="width: 100%" /></div
-                ></el-col>
+                <el-col :span="8"><div class="login-container-imgw"></div>
+                </el-col>
               </el-row>
             </el-form-item>
             <el-form-item>
@@ -46,10 +44,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance, nextTick } from "vue";
-import store, { STOREMUTATIONTYPES } from "/@/store";
-import router from "/@/router";
+import router from "@/router";
 
-import { LOGINTYPES } from "/@/type/login";
+import { LOGINTYPES } from "@/type/login";
 export default defineComponent({
   name: "login",
   components: {},
@@ -65,21 +62,7 @@ export default defineComponent({
     });
 
     const handleSubmit = async () => {
-      loading.value = true;
-      try {
-        var data = await proxy.$api.Login.login(form);
-        store.commit("permission/" + STOREMUTATIONTYPES.PERMISSION.SETVALUE, {
-          key: "merchantUserModel",
-          value: data.merchantUserModel,
-        });
-        await store.dispatch(
-          "permission/" + STOREMUTATIONTYPES.PERMISSION.LOGIN,
-          data.permissionsList
-        );
-      } catch (error) {
-        changeImg();
-      }
-      loading.value = false;
+      
     };
     const changeImg = () => {
       const date = new Date();

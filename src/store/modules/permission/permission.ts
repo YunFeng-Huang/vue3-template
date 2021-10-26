@@ -1,11 +1,11 @@
 // @ts-ignore: Unreachable code error
-import router, { asyncRoutes, constantRoutes, RouteRecordRaw } from "/@/router";
-import { getRouterName } from "/@/utils/routers";
+import router, { asyncRoutes } from "@/router";
+import { getRouterName } from "@/utils/routers";
 import { SETTINGSTATETYPE, MUTATIONTYPES, PARAMS } from "./permission_d";
-import axios from "/@/api";
+import axios from "@/api";
 // @ts-ignore: Unreachable code error
 import { ElMessage } from "element-plus";
-import { setSessionStorage } from "/@/utils/storage";
+import { setSessionStorage } from "@/utils/storage";
 
 const state: SETTINGSTATETYPE = {
   menuList: [], //菜单权限 展示菜单 数据后端返回
@@ -14,7 +14,6 @@ const state: SETTINGSTATETYPE = {
   deepActive: "", //最后点击的菜单层级
   permissionList: [], //权限数组 ，目前只用于重定向,403
   localRouterName: [], //本地路由表所有name // 手动404 解决刷新404问题
-  systemType: 0, //0 智慧景区 1智慧收银
   merchantUserModel: null, // 用户信息
 };
 
@@ -87,7 +86,6 @@ const getters = {
   deepActive: (state: SETTINGSTATETYPE) => state.deepActive,
   permissionList: (state: SETTINGSTATETYPE) => state.permissionList,
   localRouterName: (state: SETTINGSTATETYPE) => state.localRouterName,
-  systemType: (state: SETTINGSTATETYPE) => state.systemType,
   merchantUserModel: (state: SETTINGSTATETYPE) => state.merchantUserModel,
 };
 

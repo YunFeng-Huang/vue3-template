@@ -1,7 +1,7 @@
 import api from "./api";
-import requset from "/@/api/requset";
-import requsetUrl from "/@/api/requsetUrl";
-import requsetParam from "/@/api/requsetParam";
+import requset from "@/api/requset";
+import requsetUrl from "../../utils/requsetUrl";
+import requsetParam from "@/api/requsetParam";
 
 let checkcode = (params) => {
   return requset({

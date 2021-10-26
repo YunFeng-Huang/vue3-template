@@ -2,7 +2,7 @@
   <el-dialog
     title="修改密码"
     width="30%"
-    :visible.sync="password"
+    v-model="password"
     :show-close="false"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
@@ -47,8 +47,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs, getCurrentInstance } from "vue";
-import store from "/@/store";
-import router from "/@/router";
+import store from "@/store";
+import router from "@/router";
 export default defineComponent({
   name: "",
   components: {},

@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
-const login = () => import("/@/views/login/index.vue");
-const _403 = () => import("/@/views/error/403.vue");
-const _404 = () => import("/@/views/error/404.vue");
-const empty = () => import("/@/views/layout/component/main-content/content.vue");
-const layout = () => import("/@/views/layout/index.vue");
+const login = () => import("@/views/login/index.vue");
+const _403 = () => import("@/views/error/403.vue");
+const _404 = () => import("@/views/error/404.vue");
+const empty = () => import("@/views/layout/component/main-content/content.vue");
+const layout = () => import("@/views/layout/index.vue");
 
 // 路由表前端维护，新增页面之后请在 menu.ts 添加对应的 title ，path（即为一级菜单的name），menu.ts 是给后端返回的tree
 // 本文件不添加路由，新增路由去routerModules内添加

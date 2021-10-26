@@ -13,7 +13,7 @@ import sidebarNav from "./component/sidebar-nav.vue";
 import vHeader from "./header.vue";
 import mainContent from "./component/main-content/index.vue";
 import { computed, defineComponent } from "vue";
-import store from "/@/store";
+import store from "@/store";
 export default defineComponent({
   setup() {
     const collapse = computed(() => store.getters["setting/collapse"]);

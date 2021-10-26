@@ -1,14 +1,12 @@
 // import Vue from 'vue'
-import router from '/@/router'
+import router from '@/router'
 import axios, { Canceler } from 'axios';
-import store, { STOREMUTATIONTYPES } from '/@/store';
+import store from '@/store';
 // const login_token = process.env.LOGIN_TOKEN;
 // @ts-ignore: Unreachable code error
 import { ElMessage } from 'element-plus';
-import { findMatchIndex } from './match';
-import {
-    version
-} from '../../version.json';
+import { findMatchIndex } from './utils/match';
+import {  version } from '../../version.json';
 const service = axios.create({
     timeout: 1000 * 30,
     withCredentials: true,
@@ -73,9 +71,9 @@ service.interceptors.response.use(
                         });
                     }
                 }
-                if (res.data.code === '19995') {
-                    store.dispatch('permission/' + STOREMUTATIONTYPES.PERMISSION.LOGOUT);
-                }
+                // if (res.data.code === '19995') {
+                //     store.dispatch('permission/' + STOREMUTATIONTYPES.PERMISSION.LOGOUT);
+                // }
                 return Promise.reject(message);
             }
             return res.data;

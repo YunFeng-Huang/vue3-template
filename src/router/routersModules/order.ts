@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 
-const order = () => import("/@/views/order/index.vue");
+const order = () => import("@/views/order/index.vue");
 const OrderRouter: Array<RouteRecordRaw> = [
     {
         path: "order",

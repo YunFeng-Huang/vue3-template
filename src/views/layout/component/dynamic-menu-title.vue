@@ -1,7 +1,7 @@
 <template>
   <div
     class="collapse-title"
-    @click.native="gotoRoute(item)"
+    @click="gotoRoute(item)"
     :class="item.deep == deep ? 'collapse-title-active' : ''"
   >
     <i
@@ -14,10 +14,10 @@
 
 <script lang="ts">
 import { RouteRecordRaw } from "vue-router";
-import routers from "/@/router/index";
+import routers from "@/router/index";
 import { mapState, mapGetters } from "vuex";
 import { ref, computed, getCurrentInstance } from "vue";
-import store, { STOREMUTATIONTYPES } from "/@/store";
+import store from "@/store";
 export default {
   props: {
     item: Object,
@@ -45,7 +45,7 @@ export default {
           });
         return;
       }
-      store.commit("permission/" + STOREMUTATIONTYPES.PERMISSION.SETVALUE, {
+      store.commit("permission/setting", {
         key: "deepActive",
         value: v.deep,
       });

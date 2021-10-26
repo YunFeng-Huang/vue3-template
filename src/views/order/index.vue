@@ -46,8 +46,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance, toRefs } from "vue";
-import store from "/@/store";
-import router from "/@/router";
+import store from "@/store";
+import router from "@/router";
 import VDialog, { dialog } from "./dialog/index.vue";
 export interface tableEle {
   id: string;
@@ -77,12 +77,9 @@ export default defineComponent({
     };
     const onSubmit = () => {
       orderData.loading = true;
-      const systemType = store.getters["permission/systemType"];
-      // systemType：0 智慧景区 1智慧收银
       // orderNum：订单号
       // orderNumTypeEnum：1支付宝单号 2微信单号 3业务单号
       proxy.$api.Order.order({
-        systemType: systemType,
         orderNum: formInline.orderNum,
         orderNumTypeEnum: formInline.orderNumTypeEnum,
       })

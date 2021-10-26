@@ -7,7 +7,6 @@ export interface SETTINGSTATETYPE {
   deepActive: string,
   permissionList: string[],
   localRouterName: string[],
-  systemType: number,
   merchantUserModel: any
 }
 export enum MUTATIONTYPES {

@@ -5,8 +5,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import store from "/@/store";
-import router from "/@/router";
+import store from "@/store";
+import router from "@/router";
 export default defineComponent({
   name: "",
   components: {},

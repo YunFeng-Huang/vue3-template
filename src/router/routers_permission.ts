@@ -1,10 +1,10 @@
-import router, { asyncRoutes } from "/@/router";
-import store, { STOREMUTATIONTYPES } from "/@/store";
+import router, { asyncRoutes } from "@/router";
+import store  from "@/store";
 import { NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw, START_LOCATION } from "vue-router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { setSessionStorage } from "/@/utils/storage";
-import { mergeRoutersMeta } from "/@/utils/routers";
+import { setSessionStorage } from "@/utils/storage";
+import { mergeRoutersMeta } from "@/utils/routers";
 NProgress.configure({ showSpinner: false });
 //不经过token校验的路由
 const routesWhiteList = ["/login", "/404", "/403"];
@@ -44,9 +44,9 @@ router.beforeEach(
                     }
                 } else {
                     try {
-                        await store.dispatch(
-                            "permission/" + STOREMUTATIONTYPES.PERMISSION.SETROUTERS
-                        );
+                        // await store.dispatch(
+                        //     "permission/" +  PERMISSION.SETROUTERS
+                        // );
                         next({ ...to, replace: true });
                     } catch {
                         next();
@@ -69,7 +69,7 @@ router.afterEach((to: RouteLocationNormalized) => {
     // 获取菜单中的页面权限，并添加到路由meta中
     mergeRoutersMeta(menuList, to, "");
     to.meta && to.meta.title && (document.title = to.meta.title.toString());
-    to.meta && to.meta.breadcrumb && store.commit('permission/' + STOREMUTATIONTYPES.PERMISSION.SETCRUBLIST, to.meta.breadcrumb);
+    // to.meta && to.meta.breadcrumb && store.commit('permission/' + STOREMUTATIONTYPES.PERMISSION.SETCRUBLIST, to.meta.breadcrumb);
     //持久化store
     setSessionStorage("store", JSON.stringify(store.state));
     NProgress.done();

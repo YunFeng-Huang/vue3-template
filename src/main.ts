@@ -1,16 +1,11 @@
 
-import { createApp, h, onMounted, provide } from "vue";
+import { createApp, h } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import axios from "/@/api";
-import store, { STOREMUTATIONTYPES } from "./store";
+import store from "./store";
 import "./router/routers_permission";
 import { getSessionStorage, removeSessionStorage } from "./utils/storage";
-
-import ElementPlus, { ElMessage } from "element-plus";
-import 'element-plus/dist/index.css';
-import './assets/font/iconfont.scss'
-// import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
+import { install } from "./plugins";
 
 const app = createApp({
     setup: () => {
@@ -24,11 +19,8 @@ const app = createApp({
     },
     render: () => h(App),
 });
-console.log(ElementPlus,'ElementPlus');
-app.use(store).use(router).use(ElementPlus).mount("#app");
-console.log(app,'app');
-app.config.globalProperties.$message = ElMessage;
-app.config.globalProperties.$api = axios;
+install(app).use(store).use(router).mount("#app");
+
 
 // app.config.errorHandler = function (err, vm, info) {
 //     console.log(err, vm, info);

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import store from '/@/store';
+import store from '@/store';
 import DynamicMenu from "./dynamic-menu.vue";
 
 export default defineComponent({

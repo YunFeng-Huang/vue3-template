@@ -70,13 +70,13 @@ module.exports = defineConfig({
     //     include: ['ElementPlus']
     // },
     // 引用全局 scss
-    cssPreprocessOptions: {
-        scss: {
-            additionalData: `
-                @import "./src/styles/index.scss";
-            `
-        }
-    },
+    // cssPreprocessOptions: {
+    //     scss: {
+    //         additionalData: `
+    //             @import "/src/styles/index.scss";
+    //         `
+    //     }
+    // },
     
     /**
      * Base public path when served in production.

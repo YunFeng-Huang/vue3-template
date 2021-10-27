@@ -62,7 +62,7 @@ const actions = {
   async [MUTATIONTYPES.SETROUTERS]({ commit, state, dispatch }: any) {
     asyncRoutes.forEach((item) => {
       if (state.permissionList.includes(item.name)) {
-        router.addRoute("container", item);
+        router.addRoute("home", item);
         router.options.routes[0].children.push(item);
       }
     });

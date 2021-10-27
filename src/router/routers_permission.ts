@@ -7,7 +7,8 @@ import { setSessionStorage } from "@/utils/storage";
 import { mergeRoutersMeta } from "@/utils/routers";
 NProgress.configure({ showSpinner: false });
 //不经过token校验的路由
-const routesWhiteList = ["/login", "/404", "/403"];
+
+const routesWhiteList = [ "login","404", "403"]
 router.beforeEach(
     async (
         to: RouteLocationNormalized,
@@ -19,7 +20,6 @@ router.beforeEach(
         const permissionList = store.getters["permission/permissionList"];
         const firstRoute = permissionList[0];
         NProgress.start();
-
         // console.log(hasToken, 'hasToken');
         // console.log(permissionList, 'permissionList');
         // 判断是否已经登录
@@ -55,7 +55,10 @@ router.beforeEach(
                 }
             }
         } else {
-            if (routesWhiteList.includes(to.path)) {
+            if (routesWhiteList.some((value, index, array) => {
+                    return to.path.includes(value);
+                })
+            ) {
                 next();
             } else {
                 next({ path: "/login", replace: true });

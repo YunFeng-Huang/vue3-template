@@ -24,16 +24,17 @@
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance } from "vue";
 import store from "@/store";
+import { MUTATIONTYPES } from "@/store/modules/setting/setting_d";
 // import { getMenuLevel } from "@/utils/routers";
 export default defineComponent({
   setup() {
     const breadcrumb = computed(() => store.getters["permission/crumbList"]);
     const collapse = computed(() => store.getters["setting/collapse"]);
     const toggleNavCollapse = () => {
-      // store.commit(
-      //   "setting/" + STOREMUTATIONTYPES.SETTING.TOGGLECOLLAPSE,
-      //   !collapse.value
-      // );
+      store.commit(
+        "setting/" + MUTATIONTYPES.TOGGLECOLLAPSE,
+        !collapse.value
+      );
     };
     return {
       collapse,

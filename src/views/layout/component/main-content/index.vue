@@ -27,4 +27,7 @@ export default {
 //   overflow: auto;
 //   padding: 20px;
 // }
+.main-content-wrap{
+  flex:1
+}
 </style>

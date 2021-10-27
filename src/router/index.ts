@@ -11,8 +11,8 @@ const layout = () => import("@/views/layout/index.vue");
 
 export const constantRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/index",
-    name: "container",
+    path: "/home",
+    name: "home",
     component: layout,
     meta: {
       title: "首页",
@@ -44,11 +44,11 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     name: "login",
     component: login,
   },
-  // {
-  //   path: '/:pathMatch(.*)',
-  //   redirect: "/index/404",
-  //   component: empty,
-  // },
+  {
+    path: '/:pathMatch(.*)',
+    redirect: "/home/404",
+    component: empty,
+  },
 ];
 import order from "./routersModules/order";
 // const asyncFiles = [home,order];

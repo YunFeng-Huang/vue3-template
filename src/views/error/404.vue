@@ -14,9 +14,9 @@
             <div class="bullshit-oops">{{ oops }}</div>
             <div class="bullshit-headline">{{ headline }}</div>
             <div class="bullshit-info">{{ info }}</div>
-            <!-- <el class="bullshit-return-home" href="#/index">
+            <el class="bullshit-return-home" @click="_jump">
               {{ jumpTime }}s&nbsp;{{ btn }}
-            </el> -->
+            </el>
           </div>
         </el-col>
       </el-row>
@@ -40,25 +40,24 @@ export default {
     };
   },
   mounted() {
-    // this.timeChange();
+    this.timeChange();
   },
   beforeUnmount() {
     clearInterval(this.timer);
   },
   methods: {
-    ...mapActions({
-      delOthersVisitedRoutes: "tagsBar/delOthersVisitedRoutes",
-    }),
+    _jump(){
+       this.$router.replace({ path: "/login" });
+    },
     timeChange() {
       this.timer = setInterval(() => {
         if (this.jumpTime) {
           this.jumpTime--;
         } else {
-          this.$router.push({ path: "/" });
-          this.delOthersVisitedRoutes({ path: "/" });
+          this._jump();
           clearInterval(this.timer);
         }
-      }, 2000);
+      }, 1000);
     },
   },
 };

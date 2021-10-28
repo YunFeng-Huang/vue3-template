@@ -1,9 +1,6 @@
 <template>
   <div class="collapse-title" @click="gotoRoute(item)">
-    <i
-      class="el-icon-message"
-      :class="item.deep.split('-').length == 2 ? '' : 'hidden'"
-    ></i>
+    <i class="el-icon-message" :class="{ hidden: hiddenIcon }"></i>
     <span class="title-name">{{ item.title }}</span>
   </div>
 </template>
@@ -18,6 +15,7 @@ import { MUTATIONTYPES } from "@/store/modules/permission/permission_d";
 export default {
   props: {
     item: Object,
+    hiddenIcon: Boolean,
   },
   setup(props: { item: any }) {
     const { proxy }: any = getCurrentInstance();

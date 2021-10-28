@@ -1,25 +1,24 @@
 <template>
-  <el-sub-menu
-    v-for="(item, index) in menuList"
-    :index="item.deep"
-    :key="index"
-    :popper-append-to-body="true"
-    :popper-class="
-      item.children == null || item.children.length == 0 ? 'no-children-popper' : ''
-    "
-    :class="`
-      ${item.children == null || item.children.length == 0 ? 'no-children' : ''}
+  <template v-for="(item, index) in menuList" :key="index">
+    <el-sub-menu
+      v-if="item.children?.length > 0"
+      :index="item.deep"
+      :popper-append-to-body="true"
+      :class="`
       ${item.deep == deep ? 'collapse-title-active' : ''}
       v-deep${dep}
    `"
-  >
-    <template #title><v-title :item="item"></v-title></template>
-    <my-nav
-      v-if="item.children && item.children.length > 0"
-      :menuList="item.children"
-      :dep="dep + 1"
-    ></my-nav>
-  </el-sub-menu>
+    >
+      <template #title> <v-title :item="item" :hiddenIcon="dep > 0"></v-title></template>
+      <my-nav :menuList="item.children" :dep="dep + 1"></my-nav>
+    </el-sub-menu>
+    <el-menu-item :index="item.deep" v-else>
+      <i class="el-icon-menu" :class="{ hidden: dep > 0 }"></i>
+      <template #title>
+        <v-title :item="item" :hiddenIcon="true"></v-title>
+      </template>
+    </el-menu-item>
+  </template>
 </template>
 
 <script lang="ts">

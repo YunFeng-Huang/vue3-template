@@ -56,10 +56,13 @@
     color: $textColor;
   }
 }
-.el-sub-menu__title:hover {
+.el-sub-menu__title:hover,.el-menu-item:hover {
   background-color: $menuHover;
 }
-
+.el-menu-item{
+  display: flex;
+  align-items: center;
+}
   // ::v-deep(.collapse-title-active .el-sub-menu__title) {
   //   background-color: $backgroundColor !important;
   // }

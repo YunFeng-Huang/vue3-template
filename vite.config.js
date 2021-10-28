@@ -46,8 +46,8 @@ module.exports = defineConfig({
          // 反向代理
         proxy: {
             '/v1/': {
-                target: "http://security-dev.yingyingwork.com",
-                // target: "http://192.168.10.74:3000",
+                // target: "http://security-dev.yingyingwork.com",
+                target: "http://10.20.12.71:3000",
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/v1/, "")
             }

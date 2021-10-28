@@ -32,6 +32,7 @@ import {
   ref,
   nextTick,
 } from "vue";
+import { MUTATIONTYPES } from "@/store/modules/permission/permission_d";
 export default defineComponent({
   setup(props, ctx) {
     const { proxy }: any = getCurrentInstance();
@@ -55,7 +56,7 @@ export default defineComponent({
     };
     const merchantUserModel = store.getters["permission/merchantUserModel"];
     const loginOut = async (val: string) => {
-      // await store.dispatch("permission/" +  PERMISSION.LOGOUT);
+      await store.dispatch("permission/" +  MUTATIONTYPES.LOGOUT);
     };
     const resetPass = async (val: string) => {
       // proxy.$refs.reset.password = true;

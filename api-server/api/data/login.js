@@ -20,12 +20,61 @@ const login = {
         "roleType": null,
         "distributorId": null
     },
-    "permissionsList": [{
+    "permissionsList": [
+        {
             title: '订单管理',
-            children: [{
-                title: '订单操作',
-                path: 'order',
-            }, ]
+            children: [
+                {
+                    title: '订单操作',
+                    path: 'order',
+                }, 
+                {
+                    title:'大放送',
+                    children: [
+                        {
+                            title: '订单',
+                            path: 'order3',
+                            children: [
+                                {
+                                    title: 'asdf',
+                                    path: 'order4',
+                                }, 
+                                {
+                                    title:'大放dddd',
+                                    path:'order5'
+                                }
+                            ]
+                            
+                        }, 
+                        {
+                            title:'大放',
+                            path:'order2'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            title: '订单管理',
+            children: [
+                {
+                    title: '订单操作1',
+                    path: 'order',
+                }, 
+                {
+                    title:'大放送2',
+                    children: [
+                        {
+                            title: '订单3',
+                            path: 'order3',
+                        }, 
+                        {
+                            title:'大放4',
+                            path:'order2'
+                        }
+                    ]
+                }
+            ]
         },
         {
             title: '智慧景区系统',

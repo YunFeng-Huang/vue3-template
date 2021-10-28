@@ -45,8 +45,10 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance, nextTick } from "vue";
 import router from "@/router";
-
 import { LOGINTYPES } from "@/type/login";
+import { apiType } from "@/api/utils/index_d";
+import store from "@/store";
+import { MUTATIONTYPES } from "@/store/modules/permission/permission_d";
 export default defineComponent({
   name: "login",
   components: {},
@@ -55,14 +57,22 @@ export default defineComponent({
     let loading = ref(false);
     const { proxy }: any = getCurrentInstance();
     let form: LOGINTYPES = reactive({
-      loginName: "",
+      loginName: "sxwl",
       password: "",
       // merchantCode: "",
       checkCode: "",
     });
 
     const handleSubmit = async () => {
-      
+      const {permissionsList,merchantUserModel} = await (proxy.$api as apiType).Login.login(form);
+      store.commit("permission/" + MUTATIONTYPES.SETVALUE, {
+          key: "merchantUserModel",
+          value: merchantUserModel,
+      });
+      await store.dispatch(
+        "permission/" + MUTATIONTYPES.LOGIN,
+        permissionsList
+      );
     };
     const changeImg = () => {
       const date = new Date();

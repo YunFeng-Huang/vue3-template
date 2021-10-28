@@ -44,12 +44,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     name: "login",
     component: login,
   },
-  {
-    path: '/:pathMatch(.*)',
-    redirect: "/home/404",
-    component: empty,
-  },
+  // {
+  //   path: '/:pathMatch(.*)',
+  //   redirect: "/home/404",
+  //   component: empty,
+  // }
 ];
+
 import order from "./routersModules/order";
 // const asyncFiles = [home,order];
 // const asyncFiles = require.context("./routersModules", true, /\.ts$/);
@@ -65,3 +66,11 @@ const router = createRouter({
 });
 
 export default router;
+
+
+
+export const Page404 = [{
+  path: '/:pathMatch(.*)',
+  redirect: "/home/404",
+  component: empty,
+}];

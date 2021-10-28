@@ -13,7 +13,7 @@ const {
 const fs = require("fs");
 const axios = require("../api/requset.js");
 
-router.post("/customer-manage-service/api/manage/user/login", async (req, res) => {
+router.post("/api/manage/user/login", async (req, res) => {
     res.send(login);
 });
 // router.post("/zhihuijingqu-service/api/zhihuijingqu/user/order", async (req, res) => {

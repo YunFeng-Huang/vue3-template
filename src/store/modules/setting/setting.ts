@@ -2,7 +2,7 @@
 import { createStore } from "vuex";
 import { MUTATIONTYPES, SETTINGSTATETYPE } from "./setting_d";
 const state: SETTINGSTATETYPE = {
-    collapse: true, //菜单是否展开
+    collapse: false, //菜单是否展开
 };
 
 const mutations = {
@@ -13,7 +13,7 @@ const mutations = {
 
 const actions = {};
 const getters = {
-    collapse: (state: SETTINGSTATETYPE) => state.collapse,
+    collapse: (state: SETTINGSTATETYPE)=> state.collapse,
 };
 
 export default { state, getters, mutations, actions, namespaced: true };

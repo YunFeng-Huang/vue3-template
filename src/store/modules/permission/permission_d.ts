@@ -6,7 +6,7 @@ export interface SETTINGSTATETYPE {
   token: string,
   deepActive: string,
   permissionList: string[],
-  localRouterName: string[],
+  localRouter: {},
   merchantUserModel: any
 }
 export enum MUTATIONTYPES {
@@ -15,7 +15,8 @@ export enum MUTATIONTYPES {
   LOGIN = 'LOGIN',
   LOGOUT = "LOGOUT",
   GETPERMISSTIONLIST = "GETPERMISSTIONLIST",
-  SETVALUE = "SETVALUE"
+  SETVALUE = "SETVALUE",
+  SETLOCALROUTER="SETLOCALROUTER"
 }
 export interface PARAMS {
   key: string,

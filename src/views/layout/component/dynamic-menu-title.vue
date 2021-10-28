@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="collapse-title"
-    @click="gotoRoute(item)"
-    :class="item.deep == deep ? 'collapse-title-active' : ''"
-  >
+  <div class="collapse-title" @click="gotoRoute(item)">
     <i
       class="el-icon-message"
       :class="item.deep.split('-').length == 2 ? '' : 'hidden'"
@@ -18,13 +14,14 @@ import routers from "@/router/index";
 import { mapState, mapGetters } from "vuex";
 import { ref, computed, getCurrentInstance } from "vue";
 import store from "@/store";
+import { MUTATIONTYPES } from "@/store/modules/permission/permission_d";
 export default {
   props: {
     item: Object,
   },
   setup(props: { item: any }) {
     const { proxy }: any = getCurrentInstance();
-    const deep = computed(() => store.getters["permission/deepActive"]);
+
     const item = props.item;
     function gotoRoute(v: any) {
       if (v.children && v.children.length > 0) return;
@@ -45,7 +42,7 @@ export default {
           });
         return;
       }
-      store.commit("permission/setting", {
+      store.commit("permission/" + MUTATIONTYPES.SETVALUE, {
         key: "deepActive",
         value: v.deep,
       });
@@ -55,7 +52,7 @@ export default {
         routers.push({ path: "/404" });
       }
     }
-    return { item, gotoRoute, deep };
+    return { item, gotoRoute };
   },
 };
 </script>
@@ -72,10 +69,8 @@ export default {
 .el-icon-message.hidden {
   visibility: hidden;
 }
-.collapse-title-active {
-  span,
-  i {
-    color: #409eff;
-  }
+
+.title-name {
+  padding-right: 40px;
 }
 </style>

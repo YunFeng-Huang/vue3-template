@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance } from "vue";
+import { computed, defineComponent, getCurrentInstance, onMounted } from "vue";
 import store from "@/store";
 import { MUTATIONTYPES } from "@/store/modules/setting/setting_d";
 // import { getMenuLevel } from "@/utils/routers";
@@ -31,11 +31,12 @@ export default defineComponent({
     const breadcrumb = computed(() => store.getters["permission/crumbList"]);
     const collapse = computed(() => store.getters["setting/collapse"]);
     const toggleNavCollapse = () => {
-      store.commit(
-        "setting/" + MUTATIONTYPES.TOGGLECOLLAPSE,
-        !collapse.value
-      );
+      store.commit("setting/" + MUTATIONTYPES.TOGGLECOLLAPSE, !collapse.value);
     };
+    onMounted(() => {
+      store.commit("setting/" + MUTATIONTYPES.TOGGLECOLLAPSE, false);
+      console.log(breadcrumb.value, "breadcrumb");
+    });
     return {
       collapse,
       breadcrumb,
@@ -62,7 +63,7 @@ export default defineComponent({
     margin-left: 8px;
     padding: 0 10px;
     font-size: 20px;
-    vertical-align: middle;
+    // vertical-align: middle;
     color: #333;
     cursor: pointer;
     transition: all 0.5s;
@@ -70,6 +71,9 @@ export default defineComponent({
       transform: rotate(180deg);
     }
   }
+}
+::v-deep(.el-breadcrumb) {
+  display: inline-block;
 }
 .breadcrumb-enter,
 .breadcrumb-leave-active {

@@ -1,0 +1,73 @@
+
+@mixin merge-slider-style(
+  $menuBg, //大背景
+  $menuBg1, //第一级背景颜色
+  $menuBg2, //第二级背景颜色
+  $menuBg3, //第三级背景颜色
+  $menuBg4, //第四级级背景颜色
+  $menuHover ,//鼠标引入色
+  $textColor,//文字颜色
+) {
+  // $menuText: #7a80b4;
+  // $menuActiveText: #7a80b4;
+  // .el-menu-item,
+  // .el-submenu {
+  //   color: #b3c0d1;
+  // }
+
+  // ::v-deep(.el-submenu__title) {
+  //   color: #b3c0d1;
+  // }
+
+  // .el-header {
+//   background-color: #b3c0d1;
+//   color: #333;
+//   line-height: 60px;
+// }
+
+// .el-aside {
+//   color: #333;
+// }
+
+.v-deep0{
+  background: $menuBg1 !important;
+}
+.v-deep1{
+  background: $menuBg2 !important;
+}
+.v-deep2{
+  background: $menuBg3 !important;
+}
+.v-deep3{
+  background: $menuBg4 !important;
+}
+.scrollbar-wrapper,.el-menu {
+  border: none;
+  height: 100%;
+  background-color: $menuBg !important;
+}
+// .el-sub-menu  {
+//   font-size: 12px;
+//   background-color: #1f2d3d !important;
+// }
+.collapse-title-active {
+  span,
+  i {
+    color: $textColor;
+  }
+}
+.el-sub-menu__title:hover {
+  background-color: $menuHover;
+}
+
+  // ::v-deep(.collapse-title-active .el-sub-menu__title) {
+  //   background-color: $backgroundColor !important;
+  // }
+
+  .no-children-popper {
+    display: none !important;
+  }
+  .no-children .el-sub-menu__icon-arrow {
+    display: none !important;
+  }
+}

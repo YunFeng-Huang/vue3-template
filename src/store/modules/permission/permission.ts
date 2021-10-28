@@ -6,6 +6,7 @@ import axios from "@/api";
 // @ts-ignore: Unreachable code error
 import { ElMessage } from "element-plus";
 import { setSessionStorage } from "@/utils/storage";
+import { RouteLocationNormalized } from "vue-router";
 
 const state: SETTINGSTATETYPE = {
   menuList: [], //菜单权限 展示菜单 数据后端返回
@@ -13,13 +14,16 @@ const state: SETTINGSTATETYPE = {
   crumbList: [], //面包屑 根据菜单显示
   deepActive: "", //最后点击的菜单层级
   permissionList: [], //权限数组 ，目前只用于重定向,403
-  localRouterName: [], //本地路由表所有name // 手动404 解决刷新404问题
+  localRouter: {}, //本地路由表 // 手动404 解决刷新404问题
   merchantUserModel: null, // 用户信息
 };
 
 const mutations = {
   [MUTATIONTYPES.SETVALUE](state: SETTINGSTATETYPE, params: PARAMS) {
     state[params.key] = params.value;
+  },
+  [MUTATIONTYPES.SETLOCALROUTER](state: SETTINGSTATETYPE, to: RouteLocationNormalized) {
+    state.localRouter[to.path]=to.name;
   },
   [MUTATIONTYPES.SETROUTERS](state: SETTINGSTATETYPE, menuList) {
     let permissionList: string[] = [];
@@ -36,9 +40,11 @@ const mutations = {
   },
   [MUTATIONTYPES.LOGIN](state: SETTINGSTATETYPE, token: string) {
     state.token = token;
-    let localRouterName: string[] = [];
-    getRouterName(asyncRoutes, localRouterName, null);
-    state.localRouterName = localRouterName;
+    // let localRouterName: string[] = [];
+    // getRouterName(asyncRoutes, localRouterName, null);
+   
+    console.log(state,'MUTATIONTYPES.LOGIN')
+    console.log(router.getRoutes(),'router')
     ElMessage.closeAll();
     router.push("/");
   },
@@ -67,14 +73,15 @@ const actions = {
       }
     });
     commit(MUTATIONTYPES.SETROUTERS, state.menuList);
+  
   },
   async [MUTATIONTYPES.LOGIN]({ commit, dispatch }: any, permission) {
     commit(MUTATIONTYPES.SETROUTERS, permission);
     await dispatch(MUTATIONTYPES.SETROUTERS);
-    commit(MUTATIONTYPES.LOGIN, "login");
+     commit(MUTATIONTYPES.LOGIN, "token");
   },
   async [MUTATIONTYPES.LOGOUT]({ commit }: any) {
-    await axios.Login.logout({});
+    // await axios.Login.logout({});
     commit(MUTATIONTYPES.LOGOUT);
   },
 };
@@ -85,7 +92,7 @@ const getters = {
   crumbList: (state: SETTINGSTATETYPE) => state.crumbList,
   deepActive: (state: SETTINGSTATETYPE) => state.deepActive,
   permissionList: (state: SETTINGSTATETYPE) => state.permissionList,
-  localRouterName: (state: SETTINGSTATETYPE) => state.localRouterName,
+  localRouter: (state: SETTINGSTATETYPE) => state.localRouter,
   merchantUserModel: (state: SETTINGSTATETYPE) => state.merchantUserModel,
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-container">
+  <div :class="`sidebar-container ${!isCollapse ? 'open' : 'close'}`">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         mode="vertical"
@@ -33,18 +33,11 @@ export default defineComponent({
     const isCollapse = computed(() => store.getters["setting/collapse"]);
     const new_deep = computed(() => {
       const deep = store.getters["permission/deepActive"];
-      const a = deep
+      return deep
         ?.split("-")
         .reduce((previousValue, currentValue, currentIndex, array) => {
           return [...previousValue, array.slice(0, currentIndex).join("-")];
         }, []);
-      console.log(a, "a");
-      return a;
-      // return deep.value
-      //   .split()
-      //   .reduce((previousValue, currentValue, currentIndex, array) => {
-      //     return [...previousValue, ...array.slice(0, currentIndex)];
-      //   }, []);
     });
     const { proxy }: any = getCurrentInstance();
     let activeMenu = ref("");
@@ -79,8 +72,7 @@ export default defineComponent({
 // $subMenuActiveText: #f4f4f5;
 // $subMenuBg: #1f2d3d;
 // $subMenuHover: #001528;
-// $sideBarWidth: 210px;
-
+$sideBarWidth: 210px;
 $menuBg: #1b2a47;
 $textColor: #fff;
 $menuHover: #2a395b;
@@ -95,7 +87,8 @@ $menuBg4: #1b2a47;
   $menuBg3,
   $menuBg4,
   $menuHover,
-  $textColor
+  $textColor,
+  $sideBarWidth
 );
 </style>
 

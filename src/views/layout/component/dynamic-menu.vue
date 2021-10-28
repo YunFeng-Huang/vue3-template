@@ -12,7 +12,7 @@
       <template #title> <v-title :item="item" :hiddenIcon="dep > 0"></v-title></template>
       <my-nav :menuList="item.children" :dep="dep + 1"></my-nav>
     </el-sub-menu>
-    <el-menu-item :index="item.deep" v-else>
+    <el-menu-item :index="item.deep" :class="`v-deep${dep}`" v-else>
       <i class="el-icon-menu" :class="{ hidden: dep > 0 }"></i>
       <template #title>
         <v-title :item="item" :hiddenIcon="true"></v-title>

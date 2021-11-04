@@ -1,22 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="./favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>售后运营平台</title>
-  <link rel="icon" href="//at.alicdn.com/t/font_1705322_19msp5lxcil.css">
-  <link rel="stylesheet" href="https://unpkg.com/element-plus/lib/theme-chalk/index.css">
+    <meta charset="UTF-8">
+    <link rel="icon" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.1, maximum-scale=1.0, user-scalable=yes">
+    <title>管理后台平台</title>
+    <link rel="icon" href="//at.alicdn.com/t/font_1705322_19msp5lxcil.css">
+    <!-- <link href="//unpkg.com/element-plus/dist/index.css"> -->
 
-
-<script type="module" src="./assets/index.7e5e8a5d.js"></script>
-
-
-<link rel="stylesheet" href="./assets/style.b9b1891b.css">
-
+  <script type="module" crossorigin src="./assets/index.e91552ee.js"></script>
+  <link rel="modulepreload" href="./assets/vendor.78f21d47.js">
+  <link rel="stylesheet" href="./assets/index.efb3d80b.css">
 </head>
+
 <body>
-  <div id="app"></div>
-  
+    <div id="app">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #000;
+                overflow: hidden;
+                font-family: "Reggae One", cursive;
+            }
+            
+            p {
+                font-size: 4vw;
+                overflow: hidden;
+                -webkit-text-stroke: 3px #7272a5;
+            }
+            
+            span {
+                display: block;
+                font-size: 20px;
+                overflow: hidden;
+                color: green;
+                text-align: center;
+            }
+            
+            p::before {
+                content: " ";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-image: linear-gradient(45deg, #ff269b, #2ab5f5, #ffbf00);
+                mix-blend-mode: multiply;
+            }
+            
+            p::after {
+                content: "";
+                background: radial-gradient(circle, #fff, #000 50%);
+                background-size: 25% 25%;
+                position: absolute;
+                top: -100%;
+                left: -100%;
+                right: 0;
+                bottom: 0;
+                mix-blend-mode: color-dodge;
+                animation: mix 2s linear infinite;
+            }
+            
+            @keyframes mix {
+                to {
+                    transform: translate(50%, 50%);
+                }
+            }
+        </style>
+        <div class="g-container">
+            <p>加载中，请稍后..</p>
+            <span class="_develop"></span>
+        </div>
+    </div>
+    
 </body>
+
 </html>

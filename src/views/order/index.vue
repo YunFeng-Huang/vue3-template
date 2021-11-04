@@ -45,7 +45,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, getCurrentInstance, toRefs } from "vue";
+import {
+  defineComponent,
+  ref,
+  reactive,
+  getCurrentInstance,
+  toRefs,
+  onMounted,
+} from "vue";
 import store from "@/store";
 import router from "@/router";
 import VDialog, { dialog } from "./dialog/index.vue";
@@ -138,6 +145,9 @@ export default defineComponent({
           orderData.loading = false;
         });
     };
+    onMounted(() => {
+      console.log(proxy.$router.currentRoute.value);
+    });
     return { formInline, onSubmit, open, ...toRefs(orderData) };
   },
 });

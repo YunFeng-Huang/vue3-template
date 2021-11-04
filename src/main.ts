@@ -19,6 +19,8 @@ const app = createApp({
     },
     render: () => h(App),
 });
+
+
 install(app).use(store).use(router).mount("#app");
 
 

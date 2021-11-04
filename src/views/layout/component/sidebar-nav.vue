@@ -3,7 +3,6 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         mode="vertical"
-        default-active="1"
         :default-openeds="new_deep"
         :collapse="isCollapse"
         text-color="#7a80b4"
@@ -25,9 +24,7 @@ export default defineComponent({
     DynamicMenu,
   },
   setup() {
-    let a = ref(0);
     const menuList = computed(() => {
-      a.value++;
       return store.getters["permission/menuList"];
     });
     const isCollapse = computed(() => store.getters["setting/collapse"]);
@@ -40,27 +37,25 @@ export default defineComponent({
         }, []);
     });
     const { proxy }: any = getCurrentInstance();
-    let activeMenu = ref("");
-    const geta = (list: []) => {
-      list.map((v: { children: any; path: any; deep: string }) => {
-        if (v.children) {
-          geta(v.children);
-        } else {
-          if (v.path == proxy.$router.currentRoute.value.name) {
-            activeMenu.value = v.deep;
-          }
-        }
-      });
-    };
+    // let activeMenu = ref("");
+    // const geta = (list: []) => {
+    //   list.map((v: { children: any; path: any; deep: string }) => {
+    //     if (v.children) {
+    //       geta(v.children);
+    //     } else {
+    //       if (v.path == proxy.$router.currentRoute.value.name) {
+    //         activeMenu.value = v.deep;
+    //       }
+    //     }
+    //   });
+    // };
     onMounted(() => {
       console.log(new_deep.value, "new_deep");
-      geta(menuList.value);
+      //   geta(menuList.value);
     });
     return {
       isCollapse,
       menuList,
-      a,
-      activeMenu,
       new_deep: new_deep,
     };
   },

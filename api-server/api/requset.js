@@ -2,7 +2,7 @@ const axios = require('axios');
 
 var app = require('../app');
 // global.baseUrl = 'https://sxtourgroup.juntuyun.com';
-global.baseUrl = 'https://dev-gateway.iuctrip.com';
+global.baseUrl = 'http://10.254.4.232';
 
 const service = axios.create({
     baseURL: global.baseUrl,
@@ -15,10 +15,10 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use(
-    function (config) {
+    function(config) {
         return config;
     },
-    function (error) {
+    function(error) {
         return error;
     }
 );

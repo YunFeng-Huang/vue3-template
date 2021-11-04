@@ -10,59 +10,58 @@ const layout = () => import("@/views/layout/index.vue");
 // 本文件不添加路由，新增路由去routerModules内添加
 
 export const constantRoutes: Array<RouteRecordRaw> = [
-  {
-    path: "/home",
-    name: "home",
-    component: layout,
-    meta: {
-      title: "首页",
-    },
-    children: [
-      {
-        path: "403",
+    {
+        path: "/home",
+        name: "home",
+        component: layout,
         meta: {
-          title: "403",
+            title: "首页",
         },
-        name: "403",
-        component: _403,
-      },
-      {
-        path: "404",
-        meta: {
-          title: "404",
-        },
-        name: "404",
-        component: _404,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    meta: {
-      title: "login",
+        children: [
+            {
+                path: "403",
+                meta: {
+                    title: "403",
+                },
+                name: "403",
+                component: _403,
+            },
+            {
+                path: "404",
+                meta: {
+                    title: "404",
+                },
+                name: "404",
+                component: _404,
+            },
+        ],
     },
-    name: "login",
-    component: login,
-  },
-  // {
-  //   path: '/:pathMatch(.*)',
-  //   redirect: "/home/404",
-  //   component: empty,
-  // }
+    {
+        path: "/login",
+        meta: {
+            title: "login",
+        },
+        name: "login",
+        component: login,
+    },
+    // {
+    //   path: '/:pathMatch(.*)',
+    //   redirect: "/home/404",
+    //   component: empty,
+    // }
 ];
 
 import order from "./routersModules/order";
-// const asyncFiles = [home,order];
-// const asyncFiles = require.context("./routersModules", true, /\.ts$/);
-let permissionModules: Array<RouteRecordRaw> = [...order];
-// asyncFiles.keys().forEach((key) => {
-//   if (key === "./index.ts") return;
-//   permissionModules = permissionModules.concat(asyncFiles(key).default);
-// });
+import developers from "./routersModules/developers";
+import setting from "./routersModules/setting";
+import market from "./routersModules/market";
+
+let permissionModules: Array<RouteRecordRaw> = [...order, ...developers, ...setting, ...market];
+
 export const asyncRoutes: Array<RouteRecordRaw> = [...permissionModules];
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes: constantRoutes,
+    history: createWebHashHistory(),
+    routes: constantRoutes,
 });
 
 export default router;
@@ -70,7 +69,7 @@ export default router;
 
 
 export const Page404 = [{
-  path: '/:pathMatch(.*)',
-  redirect: "/home/404",
-  component: empty,
+    path: '/:pathMatch(.*)',
+    redirect: "/home/404",
+    component: empty,
 }];

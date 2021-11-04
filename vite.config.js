@@ -1,9 +1,9 @@
 const fs = require("fs")
 const path = require("path")
-    // Dotenv 是一个零依赖的模块，它能将环境变量中的变量从 .env 文件加载到 process.env 中
+// Dotenv 是一个零依赖的模块，它能将环境变量中的变量从 .env 文件加载到 process.env 中
 const dotenv = require("dotenv")
 import { defineConfig, searchForWorkspaceRoot } from 'vite'
-    import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue'
 // import styleImport from 'vite-plugin-style-import'
 const envFiles = [
     /** default file */
@@ -35,18 +35,19 @@ module.exports = defineConfig({
         //     ],
         // }),
     ],
-   
+
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src') //设置别名
         }
     },
-    
+
     server: {
-         // 反向代理
+        // 反向代理
         proxy: {
             '/v1/': {
                 // target: "http://security-dev.yingyingwork.com",
+                // target: "http://10.254.4.232:3000",
                 target: "http://10.20.12.71:3000",
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/v1/, "")
@@ -57,7 +58,7 @@ module.exports = defineConfig({
         },
         hostname: process.env.VITE_HOST,
         port: process.env.VITE_PORT,
-            // 压缩
+        // 压缩
         minify: 'esbuild',
         // 是否自动在浏览器打开
         open: true,
@@ -77,20 +78,20 @@ module.exports = defineConfig({
     //         `
     //     }
     // },
-    
-    /**
-     * Base public path when served in production.
-     * @default '/'
-     */
     base: './',
-    assetsDir: 'assets',
-    /**
-     * Directory relative from `root` where build output will be placed. If the
-     * directory exists, it will be removed before the build.
-     * @default 'dist'
-     */
-    outDir: `./dist-temp/${process.env.VITE_ENV}`,
     build: {
+        // 指定输出路径，默认'dist'
+        outDir: `./dist-temp/${process.env.VITE_ENV}`,
+        // 指定生成静态资源的存放路径(相对于build.outDir)
+        assetsDir: './assets',
+        // // 小于此阈值的导入或引用资源将内联为base64编码，设置为0可禁用此项。默认4096（4kb）
+        // assetsInlineLimit: '4096',
+        // 启用/禁用CSS代码拆分，如果禁用，整个项目的所有CSS将被提取到一个CSS文件中,默认true
+        cssCodeSplit: true,
+        // 构建后是否生成source map文件，默认false
+        sourcemap: false,
+        // 为true时，会生成manifest.json文件，用于后端集成
+        manifest: false,
         terserOptions: {
             compress: {
                 drop_console: true,

@@ -25,19 +25,23 @@
                 <el-col :span="16"
                   ><el-input v-model="form.checkCode" placeholder="验证码"></el-input
                 ></el-col>
-                <el-col :span="8"><div class="login-container-imgw"></div>
-                </el-col>
+                <el-col :span="8"><div class="login-container-imgw"></div> </el-col>
               </el-row>
             </el-form-item>
             <el-form-item>
-              <el-button class="submit-btn" type="primary" :loading="loading" @click="handleSubmit" style="width: 100%">
+              <el-button
+                class="submit-btn"
+                type="primary"
+                :loading="loading"
+                @click="handleSubmit"
+                style="width: 100%"
+              >
                 登录
               </el-button>
             </el-form-item>
           </el-form>
         </div>
       </el-col>
-      
     </el-row>
     <div class="login-container-tips"></div>
   </div>
@@ -64,15 +68,8 @@ export default defineComponent({
     });
 
     const handleSubmit = async () => {
-      const {permissionsList,merchantUserModel} = await (proxy.$api as apiType).Login.login(form);
-      store.commit("permission/" + MUTATIONTYPES.SETVALUE, {
-          key: "merchantUserModel",
-          value: merchantUserModel,
-      });
-      await store.dispatch(
-        "permission/" + MUTATIONTYPES.LOGIN,
-        permissionsList
-      );
+      const { data } = await (proxy.$api as apiType).Login.login(form);
+      await store.dispatch("permission/" + MUTATIONTYPES.LOGIN, data);
     };
     const changeImg = () => {
       const date = new Date();
@@ -82,16 +79,14 @@ export default defineComponent({
     };
     changeImg();
 
-
-    const formInline =reactive( {
-        user: '',
-        region: '',
-      });
-    return { form, handleSubmit, changeImg, img, loading ,formInline};
+    const formInline = reactive({
+      user: "",
+      region: "",
+    });
+    return { form, handleSubmit, changeImg, img, loading, formInline };
   },
 });
 </script>
-
 
 <style lang="scss" scoped>
 ::v-deep(.el-form-item__label) {

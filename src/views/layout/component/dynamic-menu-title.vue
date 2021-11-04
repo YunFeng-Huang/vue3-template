@@ -1,7 +1,13 @@
 <template>
   <div class="collapse-title" @click="gotoRoute(item)">
     <i class="el-icon-message" :class="{ hidden: hiddenIcon }"></i>
-    <span class="title-name">{{ item.title }}</span>
+    <span
+      class="title-name"
+      :class="{
+        active: deepActive == item.deep,
+      }"
+      >{{ item.title }}</span
+    >
   </div>
 </template>
 
@@ -19,7 +25,7 @@ export default {
   },
   setup(props: { item: any }) {
     const { proxy }: any = getCurrentInstance();
-
+    const deepActive = computed(() => store.getters["permission/deepActive"]);
     const item = props.item;
     function gotoRoute(v: any) {
       if (v.children && v.children.length > 0) return;
@@ -50,7 +56,7 @@ export default {
         routers.push({ path: "/404" });
       }
     }
-    return { item, gotoRoute };
+    return { item, gotoRoute, deepActive };
   },
 };
 </script>

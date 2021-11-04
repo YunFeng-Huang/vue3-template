@@ -1,56 +1,69 @@
+@mixin merge-slider-style($menuBg, //大背景
+    $menuBg1, //第一级背景颜色
+    $menuBg2, //第二级背景颜色
+    $menuBg3, //第三级背景颜色
+    $menuBg4, //第四级级背景颜色
+    $menuHover, //鼠标引入色
+    $textColor, //文字颜色
+    $sideBarWidth, //菜单栏宽度
 
-@mixin merge-slider-style(
-  $menuBg, //大背景
-  $menuBg1, //第一级背景颜色
-  $menuBg2, //第二级背景颜色
-  $menuBg3, //第三级背景颜色
-  $menuBg4, //第四级级背景颜色
-  $menuHover ,//鼠标引入色
-  $textColor,//文字颜色
-  $sideBarWidth,//菜单栏宽度
 ) {
-.v-deep0{
-  background: $menuBg1 !important;
-}
-.v-deep1{
-  background: $menuBg2 !important;
-}
-.v-deep2{
-  background: $menuBg3 !important;
-}
-.v-deep3{
-  background: $menuBg4 !important;
-}
-.scrollbar-wrapper,.el-menu {
-  border: none;
-  height: 100%;
-  background-color: $menuBg !important;
-}
+    .v-deep0 {
+        background: $menuBg1 !important;
+    }
 
-.collapse-title-active {
-  span,
-  i {
-    color: $textColor;
-  }
-}
-.el-sub-menu__title:hover,.el-menu-item:hover {
-  background-color: $menuHover;
-}
-// .sidebar-container.open.sidebar{
-//   .el-sub-menu__title,.el-sub-menu,.el-menu-item{
-//     min-width: $sideBarWidth;
-//   }
-// }
+    .v-deep1 {
+        background: $menuBg2 !important;
+    }
 
-.el-menu-item{
-  display: flex;
-  align-items: center;
-}
+    .v-deep2 {
+        background: $menuBg3 !important;
+    }
 
-  .no-children-popper {
-    display: none !important;
-  }
-  .no-children .el-sub-menu__icon-arrow {
-    display: none !important;
-  }
+    .v-deep3 {
+        background: $menuBg4 !important;
+    }
+
+    .scrollbar-wrapper,
+    .el-menu {
+        border: none;
+        height: 100%;
+        background-color: $menuBg !important;
+    }
+
+    .collapse-title-active {
+        span,
+        i {
+            color: $textColor;
+        }
+    }
+
+    .el-sub-menu__title:hover,
+    .el-menu-item:hover {
+        background-color: $menuHover;
+    }
+
+    // .sidebar-container.open.sidebar{
+    //   .el-sub-menu__title,.el-sub-menu,.el-menu-item{
+    //     min-width: $sideBarWidth;
+    //   }
+    // }
+
+    .el-menu-item.is-active,
+    .title-name.active {
+        color: var(--el-menu-active-color);
+    }
+
+    .el-menu-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .no-children-popper {
+        display: none !important;
+    }
+
+    .no-children .el-sub-menu__icon-arrow {
+        display: none !important;
+    }
 }

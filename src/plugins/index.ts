@@ -10,7 +10,8 @@ export function install(app: App): App {
     app.config.globalProperties.$api = axios;
     app.config.globalProperties.$message = ElMessage;
     app.use(ElementPlus);
-  //全局组件注入
-  // installComponents(app)
-  return app
+
+    //全局组件注入
+    // installComponents(app)
+    return app
 }

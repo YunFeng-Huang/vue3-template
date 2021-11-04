@@ -21,4 +21,7 @@ export default {
 .main-content-wrap {
   flex: 1;
 }
+.main-content {
+  height: calc(100% - 50px);
+}
 </style>

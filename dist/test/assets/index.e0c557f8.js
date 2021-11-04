@@ -1,0 +1,1 @@
+import{o as e,c as t,q as s}from"./vendor.78f21d47.js";const a={data(){return{list:[]}},created(){setTimeout(()=>{this.list=[{id:"11",name:"11",age:"11"}]},1e3)}},o={class:"head"},c=s("span",{class:"auth"},"\u7BA1\u7406\u5458",-1),n=[c];function r(d,i,_,l,p,h){return e(),t("div",o,n)}a.render=r;export{a as default};

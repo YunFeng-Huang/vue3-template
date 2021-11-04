@@ -1,7 +1,7 @@
 #!/bin/bash
 dirname=dist
 oldname=dist-temp
-arr=('dev' 'test' 'prod')
+arr=('test' 'prod')
 
 read  -p  "输入版本号:"  word
 echo '{

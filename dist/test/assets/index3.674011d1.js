@@ -1,0 +1,1 @@
+import{k as e,o,c as n}from"./vendor.78f21d47.js";var m=e({name:"",components:{},setup(){return{}}});function r(t,a,s,c,p,h){return o(),n("div",null,"home4home4home4home4home4home4home4home4")}m.render=r;export{m as default};
